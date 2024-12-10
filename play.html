@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bit$World Play</title>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2483134793796269"
+     crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <style>
+      .background {
+        margin: auto;
+        width: 50%;
+      }
+
+      #main {
+        background: transparent;
+      }
+
+      canvas {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+      .background {
+        margin: auto;
+        width: 50%;
+        height: 90vh;
+        background-image: url("images/auth-bg.jpg");
+        background-size: cover;
+      }
+
+      .wrapper {
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+        background: rgba(177, 195, 226, 0.5);
+        height: 100%;
+      }
+      .wrapper .title {
+        height: 90px;
+        background: radial-gradient(
+          rgba(164, 185, 213, 1),
+          rgba(164, 185, 213, 0.8)
+        );
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrapper .title span {
+        flex: 1;
+        text-align: center;
+        line-height: 90px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+
+      .wrapper .title span:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .active {
+        border: 2px solid white;
+      }
+
+      .wrapper .form {
+        padding: 30px 25px 25px 25px;
+      }
+      .wrapper .form .row {
+        height: 45px;
+        margin-bottom: 15px;
+        position: relative;
+      }
+      .wrapper .form .row input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 60px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: rgba(177, 195, 226, 1);
+        color: #fff;
+      }
+      .form .row input:focus {
+        border-color: rgb(164, 185, 213);
+        box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+      }
+      .form .row input::placeholder {
+        color: #ffffff;
+      }
+      .wrapper .form .row i {
+        position: absolute;
+        width: 47px;
+        height: 100%;
+        color: #fff;
+        font-size: 18px;
+        background: rgb(197, 216, 249);
+        border: 1px solid rgb(197, 216, 249);
+        border-radius: 5px 0 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .wrapper .form .pass {
+        margin: -8px 0 20px 0;
+      }
+      .wrapper .form .pass a {
+        color: #16a085;
+        font-size: 17px;
+        text-decoration: none;
+      }
+      .wrapper .form .pass a:hover {
+        text-decoration: underline;
+      }
+
+      .wrapper .form .button {
+        justify-content: center;
+      }
+
+      .wrapper .form .button input {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        height: 100%;
+        width: 50%;
+      }
+
+      .wrapper .form .signup-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 17px;
+      }
+      .wrapper .form .signup-link a {
+        color: #16a085;
+        text-decoration: none;
+      }
+      .form .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .ui {
+        position: relative;
+        height: 85vh;
+      }
+
+      .mainButton {
+        position: absolute;
+        width: 300px;
+        height: 100px;
+        margin: 30px;
+        padding: 10px;
+        font-size: 20px;
+        color: white;
+        border: none;
+      }
+
+      .mainButton span {
+        position: relative;
+      }
+
+      #tradeBtn {
+        top: 0;
+        left: 0;
+        background: url("images/luMainButton.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      #tradeBtn span {
+        top: 5px;
+      }
+
+      #itemsBtn {
+        bottom: 0;
+        left: 0;
+        background: url("images/lbMainButton.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      #itemsBtn span {
+        top: -4px;
+      }
+
+      #searchBtn {
+        top: 0;
+        right: 0;
+        background: url("images/ruMainButton.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      #searchBtn span {
+        top: 5px;
+      }
+
+      #accountBtn {
+        bottom: 0;
+        right: 0;
+        background: url("images/rbMainButton.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      #accountBtn span {
+        top: -4px;
+      }
+
+      #chatBtn {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background: url("images/centerMainButton.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      #chatBtn span {
+        top: -5px;
+      }
+
+      .backBtn {
+        background: url("images/ruMainButton.png") no-repeat;
+        background-size: 100% 100%;
+        margin: 0;
+      }
+
+      .backBtn span {
+        top: 5px;
+      }
+
+      .box {
+        background: url("images/marketBg.jpeg") no-repeat;
+        background-size: 100% 100%;
+        padding: 20px;
+        width: 60vw; text-align: center; margin: 0 auto;
+        height: fit-content;
+        /* Push down */
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      .tableFixHead {
+        overflow-y: auto;
+        height: 50vh;
+        border: 3px solid rgb(0, 251, 250); border-top: none ;
+      }
+
+      .tableFixHead thead {
+        position: sticky;
+        top: 0px;
+        background: linear-gradient(65deg, rgba(0,251,250,0.1) 0%, rgba(0,251,250,0.8) 100%);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        color: white;
+      }
+
+      #cardInventoryTable td:first-child {
+        width: 50%;
+      }
+
+      #cardInventoryTable td:nth-child(2) {
+        color: yellow;
+      }
+
+      #cardInventoryTable th:nth-child(3), #cardInventoryTable td:nth-child(3) {
+        text-align: right;
+      }
+
+      #gemInventoryTable td:first-child {
+        width: 20%;
+      }
+
+      #gemInventoryTable td:nth-child(4) {
+        color: yellow;
+      }
+
+      #gemInventoryTable td:nth-child(3) {
+        color: aqua;
+      }
+
+      #gemInventoryTable th:nth-child(4), #gemInventoryTable td:nth-child(4), #gemInventoryTable th:nth-child(5), #gemInventoryTable td:nth-child(5) {
+        text-align: right;
+      }
+
+      td img {
+        width: 50px;
+        height: 50px;
+      }
+
+      #cardMarketTable td:nth-child(2) {
+        color: yellow;
+      }
+
+      .gems {
+        border: 3px solid rgb(0, 251, 250);
+        border-top: none;
+      }
+
+
+      .gems li {
+        display: inline-block;
+        padding: 5px 1rem 0 1rem;
+      }
+
+      li img {
+        width: 50px;
+        height: 50px;
+      }
+
+      ul {
+        text-align: center;
+        color: aqua;
+        margin: 0;
+      }
+
+      .tabContainer {
+        display: inline-flex; justify-content: center; align-items: center; width: 100%; border: 3px solid rgb(0, 251, 250); background: rgb(0,251,250);
+            background: linear-gradient(25deg, rgba(0,251,250,0.1) 0%, rgba(0,251,250,0.5) 100%);
+      }
+
+      .tab {
+        flex: 1 1 auto;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 36px;
+        font-weight: bold;
+        color: white
+      }
+
+      .sellBtn {
+        background-image: linear-gradient(#F52106, #910904);
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 2px solid black;
+      }
+
+      .sellBtn:hover {
+        background-image: none;
+        background-color: #910904;
+      }
+
+      .buyBtn {
+        background-image: linear-gradient(#8EFA00, #008F00);
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 2px solid black;
+      }
+
+      .buyBtn:hover {
+        background-image: none;
+        background-color: #008F00;
+      }
+
+
+      .removeListingBtn {
+        background-image: linear-gradient(#FEF97B, #928F26);
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 2px solid black;
+      }
+
+      .removeListingBtn:hover {
+        background-image: none;
+        background-color: #928F26;
+      }
+
+      .cardContainer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 600px;
+        margin: 0 auto;
+      }
+      
+      .frontCard {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .back-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .card-button {
+        position: absolute;
+        width: 8%;
+        height: 5%;
+      }
+
+      .tl-button {
+        top: 3.5%;
+        left: 6.5%;
+      }
+
+      .tr-button {
+        position: absolute;
+        top: 3.5%;
+        left: 85%;
+      }
+
+      .bl-button {
+        top: 91%;
+        left: 6%;
+      }
+
+      .br-button {
+        top: 91%;
+        left: 86%;
+      }
+
+      .cardImage {
+        position: absolute;
+        top: 1%;
+        left: 4%;
+        width: 92%;
+        height: 85%;
+        border-radius: 30px;
+      }
+
+      .cardName {
+        position: absolute;
+        top: 77%;
+        left: 6%;
+        width: 60%;
+        font-size: 18px;
+        color: yellow;
+        text-align: left;
+      }
+
+      .cardDescription {
+        position: absolute;
+        top: 82%;
+        left: 23%;
+        width: 50%;
+        height: 10%;
+        font-size: 16px;
+        color: yellow;
+        text-align: left;
+      }
+
+      .openBtn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        font-size: 48px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        color: white;
+      }
+
+      /* Glow green */
+      .glow-green {
+        color: #fff;
+        -webkit-animation: glow-green 1s ease-in-out infinite alternate;
+        -moz-animation: glow-green 1s ease-in-out infinite alternate;
+        animation: glow-green 1s ease-in-out infinite alternate;
+      }
+
+      @-webkit-keyframes glow-green {
+        from {
+          text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00,
+            0 0 20px #00ff00, 0 0 25px #00ff00, 0 0 30px #00ff00, 0 0 35px #00ff00;
+        }
+        to {
+          text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00,
+            0 0 25px #00ff00, 0 0 30px #00ff00, 0 0 35px #00ff00, 0 0 40px #00ff00;
+        }
+      }
+
+      canvas {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: -99;
+      }
+
+      video {
+        border-radius: 0;
+      }
+
+      .chatBox {
+        padding: 20px;
+        width: 60vw; text-align: center; margin: 0 auto;
+        height: 100%;
+      }
+
+      .chatTable {
+        background-color: rgba(112, 99, 99, 0.3);
+      }
+
+      .chatwrapper {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: left;
+      }
+
+      .chatinput {   
+        width: 100%;
+        font-size: 24px;
+        background-color: rgba(112, 99, 99, 0.3);
+        color: white;
+        border: none;
+      }
+
+      .chatwrapper button {
+        font-size: 24px;
+        border: none;
+        background-color: rgba(112, 99, 99, 0.3);
+        color: white;
+      }
+
+      /* Make main button smaller when on phone */
+      @media only screen and (max-width: 1080px) {
+
+        #tradeBtn {
+          /* Move buttons into column */
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
+          background: url("images/centerMainButton.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        #tradeBtn span {
+          top: -5px;
+        }
+
+        #itemsBtn {
+          top: 15%;
+          left: 50%;
+          transform: translate(-50%, 0);
+          background: url("images/centerMainButton.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        #itemsBtn span {
+          top: -5px;
+        }
+
+        #searchBtn {
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, 0);
+          background: url("images/centerMainButton.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        #searchBtn span {
+          top: -5px;
+        }
+
+        #accountBtn {
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, 0);
+          background: url("images/centerMainButton.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        #accountBtn span {
+          top: -5px;
+        }
+
+        #chatBtn {
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, 0);
+          background: url("images/centerMainButton.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        #chatBtn span {
+          top: -5px;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="information.html"> Bit$World </a>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="showSearchUI();">SEARCH</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownone" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ITEMS
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownone">
+              <a class="dropdown-item" href="#" onclick="removeSearchListeners(); showItemsUI();">INVENTORY</a>
+              <a class="dropdown-item" href="#" onclick="removeSearchListeners(); showTradeUI();">MARKET</a>
+              <a class="dropdown-item" href="#" onclick="removeSearchListeners(); showShopUI();">SHOP</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdowntwo" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ACCOUNT
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdowntwo">
+              <a class="dropdown-item" href="#" onclick="removeSearchListeners(); showChatUI();">CHAT</a>
+              <a class="dropdown-item" href="#" onclick="removeSearchListeners(); showAccountUI();">SETTINGS</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section>
+      <div>
+        <div id="accountUI" class="hidden ui">
+          <button id="logoutBtn" style="position: absolute; top: 50%; left: 50%;">Logout</button>
+          <button class="mainButton backBtn">
+            <span>CHANGE PASSWORD</span>
+          </button>
+        </div>
+        
+        <div id="itemsUI" class="hidden ui">
+          <button id="itemsBackBtn" class="mainButton backBtn hidden" onclick="
+            document.getElementById('card-inv-container').classList.add('hidden');
+            document.getElementById('inventoryBox').classList.remove('hidden');
+            document.getElementById('itemsBackBtn').classList.add('hidden');
+          "><span>BACK</span></button>
+          <div id="inventoryBox" class="box">
+            <h1 style="font-size: 48px; color: white;">INVENTORY</h1>
+            <div class="tabContainer">
+              <button class="tab" onclick="showCardInventory();">CARD</button>
+              <button class="tab" onclick="showGemInventory();">GEM</button>
+            </div>
+            <div class="tableFixHead">
+              <table id="cardInventoryTable">
+               <thead>
+                <tr>
+                  <th>Card</th>
+                  <th>Price</th>
+                  <th>Sell</th>
+                </tr>
+               </thead>
+                <tbody id="cardInventory">
+                  <tr>
+                    <td>Athena</td>
+                    <td>200</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td>Jack</td>
+                    <td>5</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table id="gemInventoryTable" class="hidden">
+                <thead>
+                 <tr>
+                    <th>Gem</th>
+                    <th>Price</th>
+                    <th>Units</th>
+                    <th>Total</th>
+                    <th>Sell</th>
+                 </tr>
+                </thead>
+                 <tbody id="gemInventory">
+                   <tr>
+                    <td><img src="images/gems/diamond.png"/></td>
+                     <td>100</td>
+                     <td>2</td>
+                     <td>200</td>
+                     <td><button>Sell</button></td>
+                   </tr>
+                   <tr>
+                    <td><img src="images/gems/ruby.png"/></td>
+                    <td>150</td>
+                    <td>4</td>
+                    <td>600</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/gems/gem.png"/></td>
+                    <td>200</td>
+                    <td>8</td>
+                    <td>1600</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/gems/sapphire.png"/></td>
+                    <td>100</td>
+                    <td>3</td>
+                    <td>300</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/gems/coin.gif"/></td>
+                    <td>100</td>
+                    <td>3</td>
+                    <td>300</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                 </tbody>
+               </table>
+            </div>
+            <div>
+              <ul class="gems" style="color: white; text-align: center;">
+                <li><img src="images/gems/diamond.png"/>: <span id="diamondInventoryUI">8</span></li>
+                <li><img src="images/gems/sapphire.png"/>: <span id="sapphireInventoryUI">3</span></li>
+                <li><img src="images/gems/ruby.png"/>: <span id="rubyInventoryUI">6</span></li>
+                <li><img src="images/gems/gem.png"/>: <span id="gemInventoryUI">10</span></li>
+                <li style="color: gold;"><img src="images/gems/gold.png"/>: <span id="goldInventoryUI">1000</span></li>
+                <li><img src="images/gems/coin.gif"/>: <span id="coinInventoryUI">8</span></li>
+              </ul>
+            </div>
+          </div>
+          <div id="card-inv-container" class="cardContainer">
+            <div id="front-inv-card" class="hidden">
+              <img src="images/Abe Lincoln.jpg" id="card-inv-image" class="cardImage"/>
+              <img src="images/card/frame.png" id="front-inv-card" class="frontCard"/>
+              <h2 id="card-inv-name" class="cardName">NAME</h2>
+              <p id="card-inv-description" class="cardDescription hidden">Description Description Description Description Description Description</p>
+              <img src="images/card/green.png" class="card-button tl-button"/>
+              <img src="images/card/blue.png" class="card-button tr-button" onclick="claimReward(true);"/>
+              <img src="images/card/yellow.png" class="card-button bl-button" onclick="document.getElementById('card-inv-description').classList.remove('hidden'); learnFoundCard(document.getElementById('card-inv-name').innerHTML);"/>
+              <img src="images/card/red.png" class="card-button br-button"/>
+            </div>
+            <div id="back-inv-card">
+              <button class="openBtn" onclick="showFrontInvCard();">OPEN</button>
+              <video autoplay muted loop class="back-card">
+                <source src="video/card-back.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div id="tradeUI" class="hidden ui">
+          <button id="marketBackBtn" class="mainButton backBtn hidden" onclick="
+          document.getElementById('card-market-container').classList.add('hidden');
+          document.getElementById('marketBox').classList.remove('hidden');
+          document.getElementById('marketBackBtn').classList.add('hidden');
+        "><span>BACK</span></button>
+          <div id="marketBox" class="box">
+            <h1 style="font-size: 48px; color: white;">MARKET</h1>
+            <div class="tabContainer">
+              <button class="tab" onclick="showCardMarket();">CARD</button>
+              <button class="tab" onclick="showGemMarket();">GEM</button>
+            </div>
+            <div class="tableFixHead">
+              <table id="cardMarketTable">
+               <thead>
+                <tr>
+                  <th>Card</th>
+                  <th>Price</th>
+                  <th>Seller</th>
+                  <th>Buy</th>
+                </tr>
+               </thead>
+                <tbody id="cardMarket">
+                  <tr>
+                    <td>Ares</td>
+                    <td>100</td>
+                    <td>Player 1</td>
+                    <td><button>Buy</button></td>
+                  </tr>
+                  <tr>
+                    <td>Zeus</td>
+                    <td>300</td>
+                    <td>Player 2</td>
+                    <td><button>Buy</button></td>
+                  </tr>
+                  <tr>
+                    <td>Odin</td>
+                    <td>250</td>
+                    <td>Player 3</td>
+                    <td><button>Buy</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table id="gemMarketTable" class="hidden">
+                <thead>
+                 <tr>
+                    <th>Gem</th>
+                    <th>Price</th>
+                    <th>Available Units</th>
+                    <th>Units</th>
+                    <th>Total</th>
+                    <th>Sell</th>
+                 </tr>
+                </thead>
+                 <tbody id="gemMarket">
+                   <tr>
+                    <td><img src="images/gems/diamond.png"/></td>
+                     <td>100</td>
+                     <td>2</td>
+                     <td>200</td>
+                     <td><button>Sell</button></td>
+                   </tr>
+                   <tr>
+                    <td><img src="images/gems/ruby.png"/></td>
+                    <td>150</td>
+                    <td>4</td>
+                    <td>600</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/gems/gem.png"/></td>
+                    <td>200</td>
+                    <td>8</td>
+                    <td>1600</td>
+                    <td><button>Sell</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src="images/gems/sapphire.png"/></td>
+                    <td>100</td>
+                    <td>3</td>
+                    <td>300</td>
+                    <td><button></button></td>
+                  </tr>
+                 </tbody>
+               </table>
+            </div>
+            <div>
+              <ul class="gems" style="color: white; text-align: center;">
+                <li><img src="images/gems/diamond.png"/>: <span id="diamondMarketUI">8</span></li>
+                <li><img src="images/gems/sapphire.png"/>: <span id="sapphireMarketUI">3</span></li>
+                <li><img src="images/gems/ruby.png"/>: <span id="rubyMarketUI">6</span></li>
+                <li><img src="images/gems/gem.png"/>: <span id="gemMarketUI">10</span></li>
+                <li style="color: gold;"><img src="images/gems/gold.png"/>: <span id="goldMarketUI">1000</span></li>
+                <li><img src="images/gems/coin.gif"/>: <span id="coinMarketUI">8</span></li>
+              </ul>
+            </div>
+          </div>
+          <div id="card-market-container" class="cardContainer">
+            <div id="front-market-card" class="hidden">
+              <img src="images/Abe Lincoln.jpg" id="card-market-image" class="cardImage"/>
+              <img src="images/card/frame.png" id="front-market-card" class="frontCard"/>
+              <h2 id="card-market-name" class="cardName">NAME</h2>
+              <p id="card-market-description" class="cardDescription hidden">Description Description Description Description Description Description</p>
+              <img src="images/card/green.png" class="card-button tl-button"/>
+              <img src="images/card/blue.png" class="card-button tr-button"/>
+              <img src="images/card/yellow.png" class="card-button bl-button" onclick="document.getElementById('card-market-description').classList.remove('hidden'); learnFoundCard(document.getElementById('card-market-name').innerHTML);"/>
+              <img src="images/card/red.png" class="card-button br-button"/>
+            </div>
+            <div id="back-market-card">
+              <button class="openBtn" onclick="showFrontMarketCard();">OPEN</button>
+              <video autoplay muted loop class="back-card">
+                <source src="video/card-back.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>  
+
+        <div id="searchUI" class="hidden">
+          <div id="card-container" class="cardContainer hidden">
+            <div id="front-card">
+              <img src="images/Abe Lincoln.jpg" id="card-image" class="cardImage"/>
+              <img src="images/card/frame.png" id="front-card" class="frontCard"/>
+              <h2 id="card-name" class="cardName">NAME</h2>
+              <p id="card-description" class="cardDescription hidden">Description Description Description Description Description Description</p>
+              <img src="images/card/green.png" class="card-button tl-button"/>
+              <img src="images/card/blue.png" class="card-button tr-button" onclick="claimReward(false);"/>
+              <img src="images/card/yellow.png" class="card-button bl-button" onclick="document.getElementById('card-description').classList.remove('hidden'); learnFoundCard(document.getElementById('card-name').innerHTML); window.open('https://dischargepermit.com/n4d15xfj?key=a603a7744df29359fd539f78488c96cb', '_blank');" />
+              <img src="images/card/red.png" class="card-button br-button" onclick="buyFoundCard();"/>
+            </div>
+            <div id="back-card">
+              <button class="openBtn" onclick="showFrontCard(); window.open('https://dischargepermit.com/n4d15xfj?key=a603a7744df29359fd539f78488c96cb', '_blank');">OPEN</button>
+              <video autoplay muted loop class="back-card">
+                <source src="video/card-back.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button id="searchBackBtn" class="mainButton backBtn hidden" onclick="document.getElementById('card-container').classList.add('hidden'); setupSearchListeners(); document.getElementById('searchBackBtn').classList.add('hidden')"><span>BACK</span></button>
+        </div>
+
+        <div id="chatUI" class="hidden ui">
+          <div class="chatBox">
+            <h1 id="chatTitle" style="font-size: 48px; color: white;">WORLD CHAT</h1>
+            <div class="tabContainer" style="background: rgba(112, 99, 99, 0.3); border: 1px solid black;">
+              <button class="tab" onclick="showWorldChat();">WORLD</button>
+              <button class="tab" onclick="showGameChat();">GAME</button>
+              <button class="tab" onclick="showHelpChat();">HELP</button>
+            </div>
+            <div id="worldChatBox">
+              <div class="tabContainer" style="background: rgba(112, 99, 99, 0.3); border: none; vertical-align: middle;">
+                <h3 style="color: white;">Welcome to World Chat! Be Nice, Be Kind</h3>
+              </div>
+              <div class="scrollableTable">
+                <table id="worldchat" class="chatTable">
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Hello</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 2</td>
+                    <td>Hi</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 3</td>
+                    <td>Hey</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+              </table>
+              </div>
+              <div class="chatwrapper">
+                <input type="text" id="worldchatinput" class="chatinput" placeholder="Type here..." onkeypress="submitChat(event)"/>
+                <button id="worldchatsend">Send</button>
+              </div>
+            </div>
+             <div id="gameChatBox" class="hidden">
+              <div class="tabContainer" style="background: rgba(112, 99, 99, 0.3); border: none; vertical-align: middle;">
+                <h3 style="color: white;">Welcome to Game Chat! Be Nice, Be Kind</h3>
+              </div>
+              <div class="scrollableTable">
+                <table id="gamechat" class="chatTable">
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Hello</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 2</td>
+                    <td>Hi</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 3</td>
+                    <td>Hey</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+              </table>
+              </div>
+              <div class="chatwrapper">
+                <input type="text" id="gamechatinput" class="chatinput" placeholder="Type here..." onkeypress="submitChat(event)"/>
+              <button id="gamechatsend">Send</button>
+              </div>
+            </div>
+             <div id="helpChatBox" class="hidden">
+              <div class="tabContainer" style="background: rgba(112, 99, 99, 0.3); border: none; vertical-align: middle;">
+                <h3 style="color: white;">Welcome to Help Chat! Be Nice, Be Kind</h3>
+              </div>
+              <div class="scrollableTable">
+                <table id="helpchat" class="chatTable">
+                  <tr>
+                    <td>Player 1</td>
+                    <td>Hello</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 2</td>
+                    <td>Hi</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+                  <tr>
+                    <td>Player 3</td>
+                    <td>Hey</td>
+                    <td>05/29/24 - 12:00</td>
+                  </tr>
+              </table>
+              </div>
+              <div class="chatwrapper">
+                <input type="text" id="helpchatinput" class="chatinput" placeholder="Type here..." onkeypress="submitChat(event)"/>
+              <button id="helpchatsend">Send</button>
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <div id="shopUI" class="hidden ui">
+          <div class="box">
+            <h1 style="font-size: 48px; color: white;">SHOP</h1>
+            <div class="tableFixHead">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>ICON</td>
+                    <td>1,000,000 Gold</td>
+                    <td><button onclick="createCheckoutSession('price_1PyF82DDfDFD0xqNoIjZzDRA')">$1</button></td>
+                  </tr>
+                  <tr>
+                    <td>ICON</td>
+                    <td>5,000,000 Gold + 200 Coins</td>
+                    <td><button onclick="createCheckoutSession('price_1PyFDGDDfDFD0xqN6pCLGB0X')">$5</button></td>
+                  </tr>
+                  <tr>
+                    <td>ICON</td>
+                    <td>10,000,000 Gold + 400 Coins</td>
+                    <td><button onclick="createCheckoutSession('price_1PyFDmDDfDFD0xqN2v5teOe2')">$10</button></td>
+                  </tr>
+                  <tr>
+                    <td>ICON</td>
+                    <td>20,000,000 Gold + 800 Coins</td>
+                    <td><button onclick="createCheckoutSession('price_1PyFEGDDfDFD0xqNWf6BSYvr')">$20</button></td>
+                  </tr>
+                  <tr>
+                    <td>ICON</td>
+                    <td>50,000,000 Gold + 2000 Coins</td>
+                    <td><button onclick="createCheckoutSession('price_1PyFEkDDfDFD0xqN52wuZxlw')">$50</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script type="module" src="./earthRotate.js"></script>
+    <script type="module" src="./uiManager.js"></script>
+    <script type="module" src="./databaseManager.js"></script>
+  </body>
+</html>

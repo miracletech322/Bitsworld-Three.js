@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "firebase": "^10.9.0",
+    "three": "^0.161.0"
+  },
+  "devDependencies": {
+    "vite": "^5.1.1"
+  },
+  "scripts": {
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}

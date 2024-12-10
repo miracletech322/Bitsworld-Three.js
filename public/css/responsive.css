@@ -1,0 +1,142 @@
+@media (max-width: 1199.98px) {
+	video {
+	    width: 450px;
+	    height: 450px;
+	}
+	.video-content {
+	    width: 450px;
+	    position: relative;
+	}
+	.video-content:after {
+	    width: 350px;
+	    height: 350px;
+	}
+}
+@media (max-width: 991.98px) {
+	ul.navbar-nav.ms-auto {
+	    display: flex;
+	    margin-left: 0 !important;
+	    flex-direction: row;
+	}
+	.video-content {
+	    width: 450px;
+	    position: relative;
+	    margin-top: 70px;
+	    left: 50%;
+	    transform: translate(-50%, 0px);
+	}
+	.footer-container {
+	    position: inherit;
+	    width: 100% !important;
+	    left: 50%;
+	    transform: inherit;
+	    bottom: 50px;
+	    text-align: center;
+	    color: #fff;
+	    margin-top: 90px;
+	}
+	.container.slider-container {
+	    position: inherit;
+	    top: 50%;
+	    left: 50%;
+	    transform: inherit;
+	}
+	.social-media {
+	    position: fixed;
+	    z-index: 9;
+	    top: 50%;
+	    right: 0px;
+	    background: #0090ff;
+	    width: 50px;
+	    transform: translate(0px, -50%);
+	    padding: 46px 10px;
+	    border-radius: 10px 0px 0px 10px;
+	}
+	.article-wraper h2 {
+	    min-height: auto;
+	}
+}
+@media (max-width: 767.98px) {
+	nav.navbar.navbar-expand-lg .container {
+	    justify-content: center;
+	}
+	a.navbar-brand {
+	    margin-bottom: 10px;
+	}
+	.carousel-item {
+	    text-align: center;
+	}
+	a.nav-link {
+	    font-size: 15px;
+	}
+	.carousel-item p {
+	    font-size: 14px;
+	    line-height: 30px;
+	}
+	.footer a {
+	    font-size: 14px;
+	}
+	.footer p{
+	    font-size: 14px;
+	}
+	h1 {
+	    font-size: 25px;
+	}
+	.nav-item {
+	    margin-left: 15px;
+	    cursor: pointer;
+	    margin-right: 15px;
+	}
+	.article-details-wraper h2 {
+	    font-size: 35px;
+	    color: #fff;
+	    font-weight: 600;
+	}
+	.about-us-image {
+	    margin-top: 25px;
+	    padding-right: 0px;
+	}
+	.about-us-text h2 {
+	    font-size: 30px;
+	    font-weight: 700;
+	    color: #fff;
+	    margin-bottom: 20px;
+	}
+	.information-text-wraper h3 {
+	    text-align: center;
+	    color: #fff;
+	    font-weight: 700;
+	    font-size: 30px;
+	    margin-top: 40px;
+	    margin-bottom: 40px;
+	}
+	.information-text-wraper h4 {
+	    font-size: 22px;
+	    color: #fff;
+	    margin-top: 25px;
+	    margin-bottom: 25px;
+	}
+}
+@media (max-width: 450px) {
+	.header-middle-content h1 {
+	    font-size: 45px;
+	}
+	.header-middle-content h2 {
+	    font-size: 30px;
+	}
+	.article-details-wraper h2 {
+	    font-size: 29px;
+	    color: #fff;
+	    font-weight: 600;
+	}
+	.about-us-text h2 {
+	    font-size: 30px;
+	    font-weight: 700;
+	    color: #fff;
+	    margin-bottom: 20px;
+	}
+	.about-us-text {
+	    margin-top: 30px;
+	    margin-bottom: 0px;
+	}
+}
